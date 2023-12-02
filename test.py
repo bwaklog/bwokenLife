@@ -1,7 +1,11 @@
-import os, sys, time
+import os, sys, time, random
 
 def generateGridTemplate(n:int)->list:
     return [ [float("inf")] * n for _ in range(n) ]
+
+def generateRandomGrid(n: int) -> list:
+    return [[random.randint(0, 1) for _ in range(n)] for _ in range(n)]
+
 
 def displayGrid(grid: list) -> None:
     for i in grid:
@@ -105,14 +109,15 @@ def emojiDisplay(grid):
 
 
 cont = 0
-grid = readGridTemplate()
-while cont < 100:
+# grid = readGridTemplate()
+grid = generateRandomGrid(n=60)
+while cont < 200:
     grid = decodeCurrentGeneration(grid)
     emojiDisplay(grid)
     # cont = [True ,False][input("Next(y/n) : ").lower() == "n"]
     grid = computeNextGeneration(grid)
     cont += 1
-    time.sleep(.2)
+    time.sleep(.02)
 
     if sys.platform in ["darwin", "linux"]:
         os.system('clear')
