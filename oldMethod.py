@@ -1,4 +1,7 @@
 import os, sys, time, random
+import numpy as np
+import pygame
+import itertools
 
 def generateGridTemplate(n:int)->list:
     return [ [float("inf")] * n for _ in range(n) ]
@@ -109,15 +112,48 @@ def emojiDisplay(grid):
 
 
 # grid = readGridTemplate()
-grid = generateRandomGrid(n=60)
-for _ in range(200):
-    grid = decodeCurrentGeneration(grid)
-    emojiDisplay(grid)
-    # cont = [True ,False][input("Next(y/n) : ").lower() == "n"]
-    grid = computeNextGeneration(grid)
-    time.sleep(.02)
+grid = generateRandomGrid(n=200)
+# for _ in range(200):
+#     grid = decodeCurrentGeneration(grid)
+#     emojiDisplay(grid)
+#     # cont = [True ,False][input("Next(y/n) : ").lower() == "n"]
+#     grid = computeNextGeneration(grid)
 
-    if sys.platform in ["darwin", "linux"]:
-        os.system('clear')
-    else:
-        os.system('cls')
+array = np.array(grid).shape
+
+# Pygame stuff
+grid_width, grid_height = array[0], array[1]
+# grid = np.random.randint(2, size=(grid_width, grid_height))
+cell_size = 5
+screen_width = grid_width * cell_size
+screen_height = grid_height * cell_size
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption('bwokenLife')
+
+white = (255, 255, 255)
+black = (0, 0, 0)
+
+clock = pygame.time.Clock()
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    screen.fill(black)
+
+    for i, j in itertools.product(range(grid_width), range(grid_height)):
+        color = white if grid[i][j] == 1 else black
+        x = i * cell_size
+        y = j * cell_size
+        pygame.draw.rect(screen, color, (x, y, cell_size, cell_size))
+
+    pygame.display.flip()
+
+    grid = computeNextGeneration(grid)
+
+    clock.tick(30)
+
+
+pygame.quit()
