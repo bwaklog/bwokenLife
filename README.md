@@ -3,10 +3,10 @@ My horrible code for Conway's Game of Life simulation 🫠. This is some really 
 
 > Atb trying to run this
 
-Simulation of Penta-decathlon
-![MP](https://github.com/bwaklog/bwokenLife/assets/91192289/ba9a9686-4507-4f9d-96eb-73cb4f987ef5)
+### Using pygame to display the stuff 🐍
+![gameoflaif](https://github.com/bwaklog/bwokenLife/assets/91192289/6956c0a4-2757-4c62-a44c-c804c7b9c171)
 
 ---
 
-Simulation of random generated 60x60 grid (code kinda breaks beyond that cuz its so bad)
-![bwokenlife](https://github.com/bwaklog/bwokenLife/assets/91192289/4e2dcab2-5a33-4132-bf66-bb5d36d22266)
+### Simulation of Penta-decathlon
+![MP](https://github.com/bwaklog/bwokenLife/assets/91192289/ba9a9686-4507-4f9d-96eb-73cb4f987ef5)
