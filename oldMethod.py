@@ -101,22 +101,20 @@ def emojiDisplay(grid):
     for i in range(len(grid)):
         for j in range(len(grid)):
             if grid[i][j] == 1:
-                print("🟩", end=" ")
+                print("{:3}".format('*'), end="")
             else:
-                print("⬛", end=" ")
+                print("{:3}".format(" "), end="")
 
         print()
 
 
-cont = 0
 # grid = readGridTemplate()
 grid = generateRandomGrid(n=60)
-while cont < 200:
+for _ in range(200):
     grid = decodeCurrentGeneration(grid)
     emojiDisplay(grid)
     # cont = [True ,False][input("Next(y/n) : ").lower() == "n"]
     grid = computeNextGeneration(grid)
-    cont += 1
     time.sleep(.02)
 
     if sys.platform in ["darwin", "linux"]:
